@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import WebCam from 'react-webcam';
+
+const videoConstraints = {
+  width: 500,
+  height: 500,
+  facingMode: "user"
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+  const webcamRef = React.useRef(null);
+  
+  return(
+    <div>
+      <WebCam
+        audio={false}
+        height={200}
+        ref={webcamRef}
+        screenshotFormat="image/jpeg"
+        width={220}
+        videoConstraints={videoConstraints}
+      />
     </div>
-  );
+  )
 }
 
 export default App;
