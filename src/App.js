@@ -1,28 +1,35 @@
-import React from 'react';
-import WebCam from 'react-webcam';
-
-const videoConstraints = {
-  width: 500,
-  height: 500,
-  facingMode: "user"
-};
+import React, { useEffect, useRef } from "react";
+import './App.css';
 
 function App() {
+  const videoRef = useRef(null);
 
-  const webcamRef = React.useRef(null);
+  const getVideo = () => {
+    navigator.mediaDevices
+	.getUserMedia({
+	  video: {width: 1280, height: 720}
+	})
+	.then(stream => {
+	  let video = videoRef.current;
+	  video.srcObject = stream;
+	  video.play();
+	})
+	.catch(err => {
+	  console.error(err);
+	})
+  }
+  useEffect(() => {
+    getVideo();
+  }, [videoRef])
   
-  return(
-    <div>
-      <WebCam
-        audio={false}
-        height={200}
-        ref={webcamRef}
-        screenshotFormat="image/jpeg"
-        width={220}
-        videoConstraints={videoConstraints}
-      />
+  return (
+    <div className="App">
+	<div className="camera">
+	  <video ref={videoRef}></video>
+	  <button>SNAP!</button>
+	</div>
     </div>
-  )
+  );
 }
 
 export default App;

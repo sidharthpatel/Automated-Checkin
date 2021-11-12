@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Fira Sans', sans-serif;
+}
+
+.App {
+  min-height: 100vh;
+  position: relative;
+  background-color: #212121;
+}
+
+.camera {
+  position: relative;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
